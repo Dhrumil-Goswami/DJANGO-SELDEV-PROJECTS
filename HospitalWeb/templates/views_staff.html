@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block tittle %} Patient List {% endblock tittle%}
+{% block body %}
+<table border="3" class="table">
+    <tr>
+        <td scope="row">Doctor</td>
+        <td scope="row">Disease</td>
+        <td scope="row">File</td>
+    </tr>
+    {% for temp in staff_rec %}'
+    <tr>
+        <td>{{ temp.doctor_name }}</td>
+        <td>{{ temp.type_treatment }}</td>
+        <td><img src="{{ temp.doc_pic.url }}"></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock body%}

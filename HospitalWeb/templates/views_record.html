@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block tittle %} Patient List {% endblock tittle%}
+{% block body %}
+<table border="3" class="table">
+    <tr>
+        <td scope="row">firstname</td>
+        <td scope="row">lastname</td>
+        <td scope="row">username</td>
+        <td scope="row">password</td>
+        <td scope="row">staff_id</td>
+        <td scope="row">delete</td>
+        <td scope="row">Update</td>
+
+    </tr>
+    {% for temp in patients %}'
+        <tr>
+            <td>{{ temp.f_name }}</td>
+            <td>{{ temp.l_name }}</td>
+            <td>{{ temp.un_name }}</td>
+            <td>{{ temp.pwd }}</td>
+            <td>{{ temp.staff_id }}</td>
+            <td><a href="/delete_rec/{{temp.id}}">Delete</a></td>
+            <td><a href="/update_rec/{{temp.id}}">Update</a></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock body%}

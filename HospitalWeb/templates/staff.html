@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block tittle %} Patient Form {% endblock tittle%}
+{% block body %}
+
+<form action="add" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!--    {{form.as_p}}-->
+    Doctortname:<input type="text" name="doctor_name"><br><br>
+    <label for="Type">Type Disease:</label>
+    <select name="type" id="cars">
+        <option name="sel" value="hear">Hear</option>
+        <option name="sel" value="ortho">Ortho</option>
+        <option name="sel" value="bodycheckup">Bodycheckup</option>
+    </select>
+    <br><br>
+    <input id="id_image" type="file" class="" name="image"><br><br>
+    <input type="submit" value="Register">
+</form>
+{% endblock body%}

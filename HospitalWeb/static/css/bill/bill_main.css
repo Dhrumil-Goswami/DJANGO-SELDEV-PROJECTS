@@ -1,0 +1,19 @@
+.btn_clr {
+  background-color:red;
+}
+.div12{
+text-align: center;
+padding-right: 110px;
+}
+.h1 {
+  align-content:center;
+  padding-right:30px
+
+}
+.label {
+    /* Other styling... */
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+}

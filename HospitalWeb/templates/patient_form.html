@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block tittle %} Patient Form {% endblock tittle%}
+{% block body %}
+
+    <form action="/patientinfo" method="post">
+        {% csrf_token %}
+<!--        {{form.as_p}}-->
+        Firstname:<input type="text" name="f_name"><br><br>
+            lastname:<input type="text" name="l_name"><br><br>
+        Username:<input type="text" name="un_name"><br><br>
+        Password:<input type="password" name="pwd"><br><br>
+        <select name="staff" id="staff">
+            {% for i in staff %}
+            <option value="{{i.id}}">{{i}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Register">
+    </form>
+ {% endblock body%}

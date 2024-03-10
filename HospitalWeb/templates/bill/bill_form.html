@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block tittle %} Patient Form {% endblock tittle%}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bill/bill_main.css' %}" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'css/bill/bill_main.js' %}"></script>
+<div class="container-fluid">
+<form action="" method="post" class="center">
+<!--    {% csrf_token %}-->
+    <!--        {{form.as_p}}-->
+    <div>
+        <label for="dc" class="div1">Doctor Charge:</label><br>
+        <input type="number" id="dc" name="dc" style="color:red;"><br>
+    </div>
+    <div>
+        <label for="rc" class="div1">Room Charge:</label><br>
+        <input type="number" id="rc" name="rc"><br>
+    </div>
+    <div>
+        <label for="day" class="div1">Day</label><br>
+        <input type="number" id="day" name="day"><br>
+    </div>
+    <div>
+        <div>
+            <label for="total" class="div1">Total Bill</label><br>
+            <input type="number" id="total" name="total"><br>
+        </div>
+        <div>
+            <label for="patient" class="div1">Patient</label><br>
+            <select name="patient" id="patient" class="div12">
+                {% for i in patient_info %}
+                <option value="{{i.id}}">{{i.un_name}}</option>
+                {% endfor %}
+            </select><br><br>
+        </div>
+    </div>
+    <div >
+        <input class="btn_clr" type="submit" id="add-rec" value="Register"><br>
+    </div>
+</form>
+<script>
+     $(document).on('click', '#add-rec', function (e) {
+        e.preventDefault();
+        console.log("right ")
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'bill:total-bill'%}",
+            dataType: 'json',
+            data: {
+                dc: $('#dc').val(),
+                rc: $('#rc').val(),
+                day: $('#day').val(),
+                total: $('#total').val(),
+                patient: $('#patient').val(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+               console.log("json", json)
+               $(location).attr('href', 'http://127.0.0.1:8000/');
+            },
+            error: function (xhr, errmsg, err) {
+            console.log("hgdsjfh",xhr,errmsg, err)
+            }
+        });
+    })
+</script>
+</div>
+{% endblock body%}
