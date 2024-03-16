@@ -1,18 +1,28 @@
-<h3>To do </h3>
+{% load static %}
 
-<form method="POST" action="/">
-	{% csrf_token %}
-	{{form.tittle}}
-	<input type="submit" name="Create Task">
-	
-</form>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/tasks.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-{% for task in tasks %}
+	<h3 id="test">To do </h3>
+<div class="center-column">
 
-	<div>
-		<a href="{% url 'update_task' task.id %}">UPDATE</a>
-		<a href="{% url 'delete_task' task.id %}">DELETE</a>
-		<p>{{task}}</p>
-	</div>
+	<form method="POST" action="/">
+		{% csrf_token %}
+		{{form.tittle}}
+		<input type="submit" name="Create Task">
+		
+	</form>
 
-{% endfor %}
+	{% for task in tasks %}
+		<div class="item-row">
+			<a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">UPDATE</a>
+			<a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">DELETE</a>
+			{% if task.complte == True %}
+			<stike>{{task}}</stike>
+			{% else %}
+			<span>{{task}}</span>
+			{% endif %}
+		</div>
+
+	{% endfor %}
+</div>
